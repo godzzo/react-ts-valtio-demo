@@ -1,22 +1,24 @@
 {
-  "name": "react-ts",
-  "version": "0.0.0",
-  "private": true,
-  "dependencies": {
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0",
-    "valtio": "^1.10.3"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  },
-  "devDependencies": {
-    "@types/react": "^18.0.8",
-    "@types/react-dom": "^18.0.2",
-    "react-scripts": "latest",
-    "typescript": "^4.9.5"
-  }
+	"name": "react-ts-valtio-vdemo",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "tsc && vite build",
+		"preview": "vite preview"
+	},
+	"dependencies": {
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"valtio": "^1.10.3"
+	},
+	"devDependencies": {
+		"@types/react": "^18.0.27",
+		"@types/react-dom": "^18.0.10",
+		"@vitejs/plugin-react-swc": "^3.0.0",
+		"prettier": "^2.8.4",
+		"typescript": "^4.9.3",
+		"vite": "^4.1.0"
+	}
 }
