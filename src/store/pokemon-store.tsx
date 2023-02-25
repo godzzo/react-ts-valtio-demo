@@ -15,11 +15,24 @@ class PokemonStore {
 	}
 
 	remove(pokemon: Pokemon) {
-		this.items = this.items.filter((e) => e.name !== pokemon.name);
+		this.items.splice(
+			this.items.findIndex((e) => e.name === pokemon.name),
+			1
+		);
+
+		// this.items = this.items.filter((e) => e.name !== pokemon.name);
 	}
 
 	select(pokemon: Pokemon) {
 		this.current = pokemon;
+	}
+
+	update(pokemon: Pokemon) {
+		this.items.forEach((e) => {
+			if (e.name === pokemon.name) {
+				e = pokemon;
+			}
+		});
 	}
 }
 

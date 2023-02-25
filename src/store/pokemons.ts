@@ -1,3 +1,5 @@
+// https://pokeapi.co/api/v2/pokemon/
+
 export const pokemons = [
 	{
 		name: 'bulbasaur',
