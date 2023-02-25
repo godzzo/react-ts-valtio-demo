@@ -7,15 +7,17 @@ import LayoutDemo from './views/LayoutDemo';
 import HelloWorld from './views/HelloWorld';
 import PokemonList from './views/PokemonList';
 import { Box, Column, Row } from './components/Layout';
+import SelectDemo from './views/SelectDemo';
 
 const views: { [key: string]: () => JSX.Element } = {
 	PokemonList,
 	LayoutDemo,
 	HelloWorld,
+	SelectDemo,
 };
 
 export default function App() {
-	const [selectedView, selectView] = useState('LayoutDemo');
+	const [selectedView, selectView] = useState('SelectDemo');
 
 	return (
 		<Column>
