@@ -9,9 +9,9 @@ import PokemonList from './views/PokemonList';
 import { Box, Column, Row } from './components/Layout';
 
 const views: { [key: string]: () => JSX.Element } = {
+	PokemonList,
 	LayoutDemo,
 	HelloWorld,
-	PokemonList,
 };
 
 export default function App() {

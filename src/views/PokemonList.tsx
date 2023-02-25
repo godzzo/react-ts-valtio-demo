@@ -16,12 +16,26 @@ export default function PokemonList() {
 						<PokemonRow key={p.name} p={p} />
 					))}
 				</Column>
-				{current && (
-					<Column>
-						<Box>Current: {current.name}</Box>
-						<PokemonForm pokemon={current}></PokemonForm>
-					</Column>
-				)}
+				<Column>
+					<Box>
+						<button
+							onClick={() =>
+								pokemonStore.select({
+									name: 'New',
+									url: new Date().toISOString(),
+								})
+							}
+						>
+							Create New
+						</button>
+					</Box>
+					{current && (
+						<>
+							<Box>Current: {current.name}</Box>
+							<PokemonForm pokemon={current}></PokemonForm>
+						</>
+					)}
+				</Column>
 			</Row>
 		</>
 	);

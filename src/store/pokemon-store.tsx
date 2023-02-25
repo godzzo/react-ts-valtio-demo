@@ -30,11 +30,19 @@ class PokemonStore {
 	}
 
 	update(pokemon: Pokemon) {
+		let found = false;
+
 		this.items.forEach((e) => {
 			if (e.url === pokemon.url) {
 				e.name = pokemon.name;
+
+				found = true;
 			}
 		});
+
+		if (!found) {
+			this.items.push(pokemon);
+		}
 
 		this.current = null;
 	}
