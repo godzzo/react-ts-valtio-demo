@@ -1,7 +1,7 @@
 import { proxy } from 'valtio';
 import { pokemons } from './pokemons';
 
-type Pokemon = {
+export type Pokemon = {
 	name: string;
 	url: string;
 };
@@ -16,11 +16,13 @@ class PokemonStore {
 
 	remove(pokemon: Pokemon) {
 		this.items.splice(
-			this.items.findIndex((e) => e.name === pokemon.name),
+			this.items.findIndex((e) => e.url === pokemon.url),
 			1
 		);
 
-		// this.items = this.items.filter((e) => e.name !== pokemon.name);
+		// this.items = this.items.filter((e) => e.url !== pokemon.url);
+
+		this.current = null;
 	}
 
 	select(pokemon: Pokemon) {
@@ -29,10 +31,12 @@ class PokemonStore {
 
 	update(pokemon: Pokemon) {
 		this.items.forEach((e) => {
-			if (e.name === pokemon.name) {
-				e = pokemon;
+			if (e.url === pokemon.url) {
+				e.name = pokemon.name;
 			}
 		});
+
+		this.current = null;
 	}
 }
 
