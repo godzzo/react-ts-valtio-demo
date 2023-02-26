@@ -46,7 +46,7 @@ export function Column({
 export function Box({
 	style,
 	children,
-	border = true,
+	border,
 }: {
 	style?: CSSProperties;
 	children?: ReactNode;

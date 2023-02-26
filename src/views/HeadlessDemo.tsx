@@ -1,6 +1,10 @@
 import { Fragment, useState } from 'react';
 import { Combobox, Transition } from '@headlessui/react';
-import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid';
+import {
+	CheckIcon,
+	ChevronUpDownIcon,
+	XCircleIcon,
+} from '@heroicons/react/20/solid';
 import { Box, Column } from '../components/Layout';
 
 const people = [
@@ -73,23 +77,29 @@ export function SimpleWithDesign() {
 			  );
 
 	return (
-		<div className="w-72">
+		<div className="w-1/2">
 			<Combobox value={selected} onChange={setSelected} multiple>
 				<div className="relative mt-1">
 					<div className="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
-						{selected.length > 0 && (
-							<ul>
-								{selected.map((person) => (
-									<li key={person.id}>{person.name}</li>
-								))}
-							</ul>
-						)}
+						<div className="flex flex-wrap">
+							{selected.map((person) => (
+								<div key={person.id} className="p-1">
+									{person.name}
+									<XCircleIcon
+										className="inline h-5 w-5 text-red-400"
+										aria-hidden="true"
+									/>
+								</div>
+							))}
+							<Combobox.Input
+								className="border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0 focus:bg-blue-50"
+								displayValue={(person: Person) => person.name}
+								onChange={(event) =>
+									setQuery(event.target.value)
+								}
+							/>
+						</div>
 
-						<Combobox.Input
-							className="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
-							displayValue={(person: Person) => person.name}
-							onChange={(event) => setQuery(event.target.value)}
-						/>
 						<Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
 							<ChevronUpDownIcon
 								className="h-5 w-5 text-gray-400"
