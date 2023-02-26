@@ -43,7 +43,22 @@ export function Column({
 	);
 }
 
-export function Box({ children }: { children?: ReactNode }) {
+export function Box({
+	style,
+	children,
+	border = true,
+}: {
+	style?: CSSProperties;
+	children?: ReactNode;
+	border?: boolean;
+}) {
+	if (border) {
+		style = {
+			border: '2px solid black',
+			...(style && style),
+		};
+	}
+
 	return (
 		<div
 			style={{
@@ -51,6 +66,7 @@ export function Box({ children }: { children?: ReactNode }) {
 				flexDirection: 'column',
 				gap: '0.3rem',
 				padding: '0.3rem',
+				...(style && style),
 			}}
 		>
 			{children}

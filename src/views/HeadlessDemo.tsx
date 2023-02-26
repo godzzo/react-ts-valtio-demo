@@ -17,10 +17,10 @@ type Person = (typeof people)[0];
 export default function HeadlessDemo() {
 	return (
 		<Column>
-			<Box>
+			<Box border={true}>
 				<SimpleWithDesign />
 			</Box>
-			<Box>
+			<Box border={true}>
 				<MultiPlain />
 			</Box>
 		</Column>
@@ -59,7 +59,7 @@ function MultiPlain() {
 }
 
 export function SimpleWithDesign() {
-	const [selected, setSelected] = useState(people[0]);
+	const [selected, setSelected] = useState<any[]>([people[0], people[1]]);
 	const [query, setQuery] = useState('');
 
 	const filteredPeople =
@@ -74,9 +74,17 @@ export function SimpleWithDesign() {
 
 	return (
 		<div className="w-72">
-			<Combobox value={selected} onChange={setSelected}>
+			<Combobox value={selected} onChange={setSelected} multiple>
 				<div className="relative mt-1">
 					<div className="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
+						{selected.length > 0 && (
+							<ul>
+								{selected.map((person) => (
+									<li key={person.id}>{person.name}</li>
+								))}
+							</ul>
+						)}
+
 						<Combobox.Input
 							className="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
 							displayValue={(person: Person) => person.name}
