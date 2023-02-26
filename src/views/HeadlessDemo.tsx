@@ -1,6 +1,7 @@
 import { Fragment, useState } from 'react';
 import { Combobox, Transition } from '@headlessui/react';
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid';
+import { Box, Column } from '../components/Layout';
 
 const people = [
 	{ id: 1, name: 'Wade Cooper' },
@@ -14,6 +15,50 @@ const people = [
 type Person = (typeof people)[0];
 
 export default function HeadlessDemo() {
+	return (
+		<Column>
+			<Box>
+				<SimpleWithDesign />
+			</Box>
+			<Box>
+				<MultiPlain />
+			</Box>
+		</Column>
+	);
+}
+
+function MultiPlain() {
+	const [selectedPeople, setSelectedPeople] = useState([
+		people[0],
+		people[1],
+	]);
+
+	return (
+		<Combobox
+			value={selectedPeople}
+			onChange={setSelectedPeople as any}
+			multiple
+		>
+			{selectedPeople.length > 0 && (
+				<ul>
+					{selectedPeople.map((person) => (
+						<li key={person.id}>{person.name}</li>
+					))}
+				</ul>
+			)}
+			<Combobox.Input />
+			<Combobox.Options>
+				{people.map((person) => (
+					<Combobox.Option key={person.id} value={person}>
+						{person.name}
+					</Combobox.Option>
+				))}
+			</Combobox.Options>
+		</Combobox>
+	);
+}
+
+export function SimpleWithDesign() {
 	const [selected, setSelected] = useState(people[0]);
 	const [query, setQuery] = useState('');
 
