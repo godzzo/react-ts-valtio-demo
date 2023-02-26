@@ -10,10 +10,15 @@
 		"build:server": "vite build --outDir dist/server --ssr src/entry-server.tsx"
 	},
 	"dependencies": {
+		"@headlessui/react": "^1.7.12",
+		"@heroicons/react": "^2.0.16",
+		"autoprefixer": "^10.4.13",
 		"downshift": "^7.2.1",
+		"postcss": "^8.4.21",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-select": "^5.7.0",
+		"tailwindcss": "^3.2.7",
 		"valtio": "^1.10.3"
 	},
 	"devDependencies": {

@@ -10,8 +10,10 @@ import HelloWorld from './views/HelloWorld';
 import PokemonList from './views/PokemonList';
 import SelectDemo from './views/SelectDemo';
 import DownshiftDemo from './views/DownshiftDemo';
+import HeadlessDemo from './views/HeadlessDemo';
 
 const views: { [key: string]: () => JSX.Element } = {
+	HeadlessDemo,
 	PokemonList,
 	DownshiftDemo,
 	LayoutDemo,
@@ -19,8 +21,10 @@ const views: { [key: string]: () => JSX.Element } = {
 	SelectDemo,
 };
 
+const defaultView = Object.keys(views)[0];
+
 export default function App() {
-	const [selectedView, selectView] = useState('DownshiftDemo');
+	const [selectedView, selectView] = useState(defaultView);
 
 	return (
 		<Column>
