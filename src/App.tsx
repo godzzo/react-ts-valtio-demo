@@ -11,8 +11,10 @@ import PokemonList from './views/PokemonList';
 import SelectDemo from './views/SelectDemo';
 import DownshiftDemo from './views/DownshiftDemo';
 import HeadlessDemo from './views/HeadlessDemo';
+import SuperHeroDemo from './views/SuperHeroDemo';
 
 const views: { [key: string]: () => JSX.Element } = {
+	SuperHeroDemo,
 	HeadlessDemo,
 	PokemonList,
 	DownshiftDemo,
