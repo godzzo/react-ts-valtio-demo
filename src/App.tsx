@@ -3,21 +3,24 @@ import { useState } from 'react';
 
 import './App.css';
 
+import { Box, Column, Row } from './components/Layout';
+
 import LayoutDemo from './views/LayoutDemo';
 import HelloWorld from './views/HelloWorld';
 import PokemonList from './views/PokemonList';
-import { Box, Column, Row } from './components/Layout';
 import SelectDemo from './views/SelectDemo';
+import DownshiftDemo from './views/DownshiftDemo';
 
 const views: { [key: string]: () => JSX.Element } = {
 	PokemonList,
+	DownshiftDemo,
 	LayoutDemo,
 	HelloWorld,
 	SelectDemo,
 };
 
 export default function App() {
-	const [selectedView, selectView] = useState('SelectDemo');
+	const [selectedView, selectView] = useState('DownshiftDemo');
 
 	return (
 		<Column>
