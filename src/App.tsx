@@ -12,8 +12,10 @@ import SelectDemo from './views/SelectDemo';
 import DownshiftDemo from './views/DownshiftDemo';
 import HeadlessDemo from './views/HeadlessDemo';
 import SuperHeroDemo from './views/SuperHeroDemo';
+import DynamicComponentDemo from './views/DynamicComponentDemo';
 
 const views: { [key: string]: () => JSX.Element } = {
+	DynamicComponentDemo,
 	SuperHeroDemo,
 	HeadlessDemo,
 	PokemonList,
@@ -50,6 +52,7 @@ export function ViewChooser({
 				borderRadius: '7px',
 				backgroundColor: 'orange',
 				border: '2px solid blue',
+				flexWrap: 'wrap',
 			}}
 		>
 			{Object.keys(views).map((viewName) => {
