@@ -2,7 +2,8 @@ import { proxy } from 'valtio';
 import { superheroes } from './superheroes';
 
 const items = superheroes;
-export type SuperHero = (typeof items)[0];
+const firstHero = items[0];
+export type SuperHero = typeof firstHero;
 
 export const superState = proxy({
 	current: null as SuperHero | null,
