@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from 'react';
 import styled from 'styled-components';
 import { Column, Row } from '../components/Layout';
+import { TwButton } from '../components/TwComponents';
 
 const padding = '3em';
 
@@ -54,10 +55,18 @@ const Button = styled.button<{ bg?: string; color?: string }>`
 
 export default function StyledHello() {
 	const [theme, setTheme] = useState(baseTheme);
+	const [primary, setPrimary] = useState(true);
 
 	return (
 		<Column>
 			<Row>
+				<TwButton
+					primary={primary}
+					onClick={() => setPrimary(!primary)}
+				>
+					Hello TW 😎
+				</TwButton>
+
 				<Button
 					onClick={() =>
 						setTheme(theme.name === 'base' ? extraTheme : baseTheme)
