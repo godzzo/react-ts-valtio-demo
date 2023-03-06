@@ -1,0 +1,6 @@
+$smallPaddingVar: 10px;
+$normalBorder: 1px solid black;
+
+@mixin myMixin {
+	color: red;
+}

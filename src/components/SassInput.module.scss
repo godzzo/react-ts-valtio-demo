@@ -1,0 +1,14 @@
+@import 'variables.scss';
+
+.container {
+	padding: $smallPaddingVar;
+	background-color: aquamarine;
+	color: blueviolet;
+
+	input {
+		border: $normalBorder;
+		border-radius: 10px;
+		padding: $smallPaddingVar;
+		@include myMixin;
+	}
+}

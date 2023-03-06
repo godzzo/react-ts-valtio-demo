@@ -16,8 +16,10 @@ import DynamicComponentDemo from './views/DynamicComponentDemo';
 import ValtioContext from './views/ValtioContext';
 import { FocusTrapDemo } from './views/FocusTrapDemo';
 import StyledHello from './views/StyledHello';
+import SassDemo from './views/SassDemo';
 
 const views: { [key: string]: () => JSX.Element } = {
+	SassDemo,
 	StyledHello,
 	FocusTrapDemo,
 	ValtioContext,
