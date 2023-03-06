@@ -1,8 +1,9 @@
 import tw from 'tailwind-styled-components';
 
-export const TwButton = tw.div<{ primary: boolean }>`
-    ${(p) => (p.primary ? 'bg-indigo-700' : 'bg-yellow-500')}
-    ${(p) => (p.primary ? 'hover:bg-indigo-400' : 'hover:bg-yellow-300')}
+export const TwButton = tw.div<{ primary: string }>`
+    ${(p) => (p.primary === 'true' ? 'bg-indigo-700' : 'bg-yellow-500')}
+    ${(p) =>
+		p.primary === 'true' ? 'hover:bg-indigo-400' : 'hover:bg-yellow-300'}
 
     flex
     inline-flex

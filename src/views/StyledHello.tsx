@@ -45,13 +45,19 @@ const StyledHelloMsg = styled.div<{ angryColor: string; theme: Theme }>`
 	}
 `;
 
-const Button = styled.button<{ bg?: string; color?: string }>`
-	padding: 0.5rem;
-	color: ${(props) => props.color || 'white'};
-	background-color: ${(props) => props.bg || 'blue'};
-	border-radius: 10px;
-	border: 2px solid blue;
-`;
+const Button = styled.button<{ bg?: string; color?: string }>(
+	({ color, bg }) => ({
+		padding: '0.5rem',
+		color: color ?? 'white',
+		backgroundColor: bg || 'blue',
+		borderRadius: '10px',
+		border: '2px solid blue',
+
+		'&:hover': {
+			backgroundColor: 'gray',
+		},
+	})
+);
 
 export default function StyledHello() {
 	const [theme, setTheme] = useState(baseTheme);
@@ -61,7 +67,7 @@ export default function StyledHello() {
 		<Column>
 			<Row>
 				<TwButton
-					primary={primary}
+					primary={primary.toString()}
 					onClick={() => setPrimary(!primary)}
 				>
 					Hello TW 😎
