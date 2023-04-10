@@ -25,11 +25,13 @@ export function LiveSearchDemo() {
 	type changeHandler = React.ChangeEventHandler<HTMLInputElement>;
 	const handleChange: changeHandler = (e) => {
 		const { target } = e;
+
 		if (!target.value.trim()) return setResults([]);
 
 		const filteredValue = profiles.filter((profile) =>
-			profile.name.toLowerCase().startsWith(target.value.toLowerCase())
+			profile.name.toLowerCase().includes(target.value.toLowerCase())
 		);
+
 		setResults(filteredValue);
 	};
 	return (
