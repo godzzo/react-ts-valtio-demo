@@ -1,17 +1,15 @@
-import { Fragment, useState } from 'react';
-import { Combobox, Transition } from '@headlessui/react';
-import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid';
+import { useEffect, useState } from 'react';
+import { Combobox } from '@headlessui/react';
+import { CheckIcon } from '@heroicons/react/20/solid';
 
-const people = [
-	{ id: 1, name: 'Wade Cooper' },
-	{ id: 2, name: 'Arlene Mccoy' },
-	{ id: 3, name: 'Devon Webb' },
-	{ id: 4, name: 'Tom Cook' },
-	{ id: 5, name: 'Tanya Fox' },
-	{ id: 6, name: 'Hellen Schmidt' },
-];
-
-type Person = (typeof people)[0];
+type ReviewItem = {
+	id: number;
+	score: number;
+	url: string;
+	image: string;
+	type: string;
+	title: string;
+};
 
 export function HeadlessSelectDemo() {
 	return (
@@ -22,39 +20,49 @@ export function HeadlessSelectDemo() {
 }
 
 export function HeadlessSelect() {
-	const [selected, setSelected] = useState(people[0]);
+	const [selected, setSelected] = useState<ReviewItem | null>(null);
+	const [result, setResult] = useState<ReviewItem[]>([]);
 	const [query, setQuery] = useState('');
 
-	const filteredPeople =
-		query === ''
-			? []
-			: people.filter((person) =>
-					person.name
-						.toLowerCase()
-						.replace(/\s+/g, '')
-						.includes(query.toLowerCase().replace(/\s+/g, ''))
-			  );
+	useEffect(() => {
+		console.log('query', query);
+
+		if (query.trim().length > 0) {
+			fetch(`/api/reviewFilter?title=${query}`)
+				.then((res) => res.json())
+				.then((data) => setResult(data.data));
+		} else {
+			setResult([]);
+		}
+	}, [query]);
 
 	return (
-		<Combobox value={selected} onChange={setSelected}>
+		<Combobox
+			value={selected}
+			onChange={(value) => {
+				console.log('SELECT', value);
+
+				setSelected(value);
+			}}
+		>
 			<div className="relative mt-1">
 				<div className="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
 					<Combobox.Input
 						className="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
-						displayValue={(person: Person) => person.name}
+						displayValue={(person: ReviewItem) =>
+							person?.title ?? ''
+						}
 						onChange={(event) => setQuery(event.target.value)}
 					/>
 				</div>
 
-				{filteredPeople.length > 0 && (
-					<Result result={filteredPeople} />
-				)}
+				{result.length > 0 && <Result result={result} />}
 			</div>
 		</Combobox>
 	);
 }
 
-function Result({ result }: { result: Person[] }) {
+function Result({ result }: { result: ReviewItem[] }) {
 	return (
 		<Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
 			{result.map((person) => (
@@ -74,7 +82,7 @@ function Result({ result }: { result: Person[] }) {
 									selected ? 'font-medium' : 'font-normal'
 								}`}
 							>
-								{person.name}
+								{person.title}
 							</span>
 							{selected ? (
 								<span
