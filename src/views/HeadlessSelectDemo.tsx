@@ -76,30 +76,23 @@ function Result({ result }: { result: ReviewItem[] }) {
 					value={person}
 				>
 					{({ selected, active }) => (
-						<>
-							<span
-								className={`block truncate ${
-									selected ? 'font-medium' : 'font-normal'
-								}`}
-							>
-								{person.title}
-							</span>
-							{selected ? (
-								<span
-									className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
-										active ? 'text-white' : 'text-teal-600'
-									}`}
-								>
-									<CheckIcon
-										className="h-5 w-5"
-										aria-hidden="true"
-									/>
-								</span>
-							) : null}
-						</>
+						<Item item={person} active={active} />
 					)}
 				</Combobox.Option>
 			))}
 		</Combobox.Options>
 	);
+}
+
+function Item({ active, item }: { active: boolean; item: ReviewItem }) {
+	if (item.type.includes('game')) {
+		return (
+			<span className="block truncate flex flex-row gap-2 items-center">
+				<img className="h-[45px]" src={item.image} />
+				GAME: {item.title}
+			</span>
+		);
+	} else {
+		return <span className="block truncate">{item.title}</span>;
+	}
 }
