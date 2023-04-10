@@ -18,8 +18,12 @@ import { FocusTrapDemo } from './views/FocusTrapDemo';
 import StyledHello from './views/StyledHello';
 import SassDemo from './views/SassDemo';
 import MultiselectDemo from './views/MultiselectDemo';
+import AutosuggestDemo from './views/AutosuggestDemo';
+import { LiveSearchDemo } from './views/LiveSearchDemo';
 
 const views: { [key: string]: () => JSX.Element } = {
+	LiveSearchDemo,
+	AutosuggestDemo,
 	MultiselectDemo,
 	SassDemo,
 	StyledHello,
