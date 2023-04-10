@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import LiveSearch from '../components/LiveSearch';
+import { LiveSearch } from '../components/LiveSearch';
 
 const profiles = [
 	{ id: '1', name: 'Allie Grater' },
@@ -28,17 +28,21 @@ export function LiveSearchDemo() {
 		if (!target.value.trim()) return setResults([]);
 
 		const filteredValue = profiles.filter((profile) =>
-			profile.name.toLowerCase().startsWith(target.value)
+			profile.name.toLowerCase().startsWith(target.value.toLowerCase())
 		);
 		setResults(filteredValue);
 	};
 	return (
-		<LiveSearch
-			results={results}
-			value={selectedProfile?.name}
-			renderItem={(item) => <p>{item.name}</p>}
-			onChange={handleChange}
-			onSelect={(item) => setSelectedProfile(item)}
-		/>
+		<div className="h-screen flex items-center justify-center">
+			<LiveSearch
+				className="w-[600px] px-5 py-3 text-lg rounded-full border-2 border-gray-500 focus:border-gray-700 outline-none transition"
+				placeholder="Type something..."
+				results={results}
+				value={selectedProfile?.name}
+				renderItem={(item) => <p>{item.name}</p>}
+				onChange={handleChange}
+				onSelect={(item) => setSelectedProfile(item)}
+			/>
+		</div>
 	);
 }
