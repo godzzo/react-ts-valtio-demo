@@ -20,8 +20,10 @@ import SassDemo from './views/SassDemo';
 import MultiselectDemo from './views/MultiselectDemo';
 import AutosuggestDemo from './views/AutosuggestDemo';
 import { LiveSearchDemo } from './views/LiveSearchDemo';
+import { HeadlessSelectDemo } from './views/HeadlessSelectDemo';
 
 const views: { [key: string]: () => JSX.Element } = {
+	HeadlessSelectDemo,
 	LiveSearchDemo,
 	AutosuggestDemo,
 	MultiselectDemo,
