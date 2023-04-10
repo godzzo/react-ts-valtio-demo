@@ -17,8 +17,10 @@ import ValtioContext from './views/ValtioContext';
 import { FocusTrapDemo } from './views/FocusTrapDemo';
 import StyledHello from './views/StyledHello';
 import SassDemo from './views/SassDemo';
+import MultiselectDemo from './views/MultiselectDemo';
 
 const views: { [key: string]: () => JSX.Element } = {
+	MultiselectDemo,
 	SassDemo,
 	StyledHello,
 	FocusTrapDemo,
